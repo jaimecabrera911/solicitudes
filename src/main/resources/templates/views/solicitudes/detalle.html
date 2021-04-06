@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/template :: head"> </head>
+
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				Detalle Solicitud
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6">
+						<h4>No. Solicitud: </h4>
+						<p th:text="${solicitud.idSolicitud}"></p>
+					</div>
+					<div class="col-md-6">
+						<h4>Fecha creación: </h4>
+						<p th:text="${solicitud.creada}"></p>
+					</div>
+					<div class="col-md-6">
+						<h4>Creada por: </h4>
+						<p th:text="${solicitud.usuariosIdUsuario.nombre +' '+ solicitud.usuariosIdUsuario.apellido}">
+						</p>
+					</div>
+					<div class="col-md-6">
+						<h4>Descripcion: </h4>
+						<p th:text="${solicitud.descripcion}"></p>
+					</div>
+					<div class="col-md-6">
+						<h4>Estado: </h4>
+						<p th:text="${solicitud.estado}"></p>
+					</div>
+					<div class="col-md-12">
+						<h4>Detalle: </h4>
+						<div class="border p-3">
+							<p th:utext="${solicitud.detalle}"></p>
+						</div>
+					</div>
+
+				</div>
+				<table class="table table-striped table-inverse table-responsive text-center">
+					<thead class="thead-inverse">
+						<tr>
+							<th>Detalle</th>
+							<th>Estado</th>
+							<th>Aprobado por</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="detalleSolicitud : ${listaDetalleSolicitud}">
+							<td th:text="${detalleSolicitud.detalle}"></td>
+							<td th:text="${detalleSolicitud.estado}"></td>
+							<td
+								th:text="${detalleSolicitud.usuariosIdUsuario.nombre+' '+detalleSolicitud.usuariosIdUsuario.apellido}">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<th:block th:replace="fragments/template :: scripts"> </th:block>
+</body>
+
+</html>
